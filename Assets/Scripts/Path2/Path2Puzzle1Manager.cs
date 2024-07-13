@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Path2Puzzle1Manager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Path2Puzzle1Manager : MonoBehaviour
     public TMP_Text symbol5;
     public TMP_Text symbol6;
     public Color glowingColor;
-    public GameObject puzzleSolvedText;
+    public GameObject continueButton;
 
     public void Awake()
     {
@@ -44,7 +45,7 @@ public class Path2Puzzle1Manager : MonoBehaviour
 
     public void Start()
     {
-        puzzleSolvedText.SetActive(false);
+        continueButton.SetActive(false);
     }
 
     public void CheckState()
@@ -56,7 +57,7 @@ public class Path2Puzzle1Manager : MonoBehaviour
         {
             Debug.Log("Puzzle solved!");
             IlluminateSymbols();
-            puzzleSolvedText.SetActive(true);
+            continueButton.SetActive(true);
         }
     }
 
@@ -129,5 +130,10 @@ public class Path2Puzzle1Manager : MonoBehaviour
         symbol4.color = glowingColor;
         symbol5.color = glowingColor;
         symbol6.color = glowingColor;
+    }
+
+    public void Continue()
+    {
+        SceneManager.LoadScene("Path2Puzzle2");
     }
 }
