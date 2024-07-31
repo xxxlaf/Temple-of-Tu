@@ -11,15 +11,9 @@ public class Path2PuzzleManager2 : MonoBehaviour
     private List<int> combinationPressed = new List<int>();
     private List<int> combinationSolution = new List<int> { 2, 5, 10, 5, 2, 3, 1, 6 };
     public TextSwitcher textSwitcher;
-    
-    private enum PuzzleState
-    {
-        Unsolved,
-        Failed,
-        Solved
-    }
 
-    private PuzzleState currentState;
+    [SerializeField]
+    AudioManager AudioManager;
 
     private void Awake()
     {
@@ -36,14 +30,12 @@ public class Path2PuzzleManager2 : MonoBehaviour
     private void Start()
     {
         continueButton.SetActive(false);
-        currentState = PuzzleState.Unsolved;
     }
 
     private void UpdatePuzzleState()
     {
         if (IsPuzzleSolved())
         {
-            currentState = PuzzleState.Solved;
             OnPuzzleSolved();
         }
     }
@@ -65,18 +57,33 @@ public class Path2PuzzleManager2 : MonoBehaviour
     private void OnPuzzleSolved()
     {
         Debug.Log("Puzzle solved!");
+
+        if (AudioManager != null)
+        {
+            AudioManager.PlayPuzzleSuccessNoise();
+        }
+
         continueButton.SetActive(true);
         textSwitcher.StopSwitching();
     }
 
     public void SelectButton(int buttonNumber)
     {
+        if (AudioManager != null)
+        {
+            AudioManager.PlaySymbolClickNoise();
+        }
+
         combinationPressed.Add(buttonNumber);
 
         int index = combinationPressed.Count - 1;
         if (combinationPressed[index] != combinationSolution[index])
         {
-            Debug.Log("Puzzle failed.");
+            if (AudioManager != null)
+            {
+                AudioManager.PlayFailedNoise();
+            }
+
             combinationPressed.Clear();
             textSwitcher.StopSwitching();
         }
@@ -90,6 +97,11 @@ public class Path2PuzzleManager2 : MonoBehaviour
 
     public void Continue()
     {
-        SceneManager.LoadScene("End");
+        if (AudioManager != null)
+        {
+            AudioManager.PlayClickNoise();
+        }
+
+        SceneManager.LoadScene("Path2Puzzle3");
     }
 }
