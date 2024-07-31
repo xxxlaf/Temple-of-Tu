@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/PathMenu.unity
+    guid: 89f32dc18da832047ad61cac1def0165
+  - enabled: 1
     path: Assets/Scenes/Path 1/Path1Puzzle1.unity
     guid: e3d9548911f9cde47b6747bb3786fc49
   - enabled: 1
@@ -18,12 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Path 2/Path2Puzzle2.unity
     guid: 88d491560355da8478d23f5830d363f8
   - enabled: 1
+    path: Assets/Scenes/Path 1/Path1Puzzle3.unity
+    guid: d5b56b19a93c5984a818006d03f6d439
+  - enabled: 1
+    path: Assets/Scenes/Path 2/Path2Puzzle3.unity
+    guid: 8df8371beb56d3040a2617190f13c369
+  - enabled: 1
     path: Assets/Scenes/End.unity
     guid: ab2afb999cc34014095f54c9d8d0cdc6
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/PathMenu.unity
-    guid: 89f32dc18da832047ad61cac1def0165
   m_configObjects: {}

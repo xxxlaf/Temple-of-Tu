@@ -12,6 +12,9 @@ public class PuzzleManager : MonoBehaviour
     private bool[] buttonStates;
     public GameObject continueButton;
 
+    [SerializeField]
+    AudioManager AudioManager;
+
     private enum PuzzleState
     {
         Unsolved,
@@ -60,11 +63,22 @@ public class PuzzleManager : MonoBehaviour
     private void OnPuzzleSolved()
     {
         Debug.Log("Puzzle solved!");
+
+        if (AudioManager != null)
+        {
+            AudioManager.PlayPuzzleSuccessNoise();
+        }
+
         continueButton.SetActive(true);
     }
 
     public void SelectButton(int buttonNumber)
     {
+        if (AudioManager != null)
+        {
+            AudioManager.PlaySymbolClickNoise();
+        }
+
         if (buttonNumber < 1 || buttonNumber > 24) return;
 
         int index = buttonNumber - 1;
@@ -75,6 +89,11 @@ public class PuzzleManager : MonoBehaviour
 
     public void Continue()
     {
+        if (AudioManager != null)
+        {
+            AudioManager.PlayClickNoise();
+        }
+
         SceneManager.LoadScene("Path1Puzzle2");
     }
 }

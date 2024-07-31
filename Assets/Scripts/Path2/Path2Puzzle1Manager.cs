@@ -31,6 +31,9 @@ public class Path2Puzzle1Manager : MonoBehaviour
     public Color glowingColor;
     public GameObject continueButton;
 
+    [SerializeField]
+    AudioManager AudioManager;
+
     public void Awake()
     {
         if (instance != null)
@@ -55,7 +58,11 @@ public class Path2Puzzle1Manager : MonoBehaviour
             && (!button1Selected && !button5Selected && !button9Selected && !button10Selected && !button11Selected
             && !button12Selected && !button13Selected))
         {
-            Debug.Log("Puzzle solved!");
+            if (AudioManager != null)
+            {
+                AudioManager.PlayPuzzleSuccessNoise();
+            }
+
             IlluminateSymbols();
             continueButton.SetActive(true);
         }
@@ -63,6 +70,11 @@ public class Path2Puzzle1Manager : MonoBehaviour
 
     public void SelectButton(int buttonNumber)
     {
+        if (AudioManager != null)
+        {
+            AudioManager.PlaySymbolClickNoise();
+        }
+
         switch (buttonNumber)
         {
             case 1:
@@ -134,6 +146,11 @@ public class Path2Puzzle1Manager : MonoBehaviour
 
     public void Continue()
     {
+        if (AudioManager != null)
+        {
+            AudioManager.PlayClickNoise();
+        }
+
         SceneManager.LoadScene("Path2Puzzle2");
     }
 }

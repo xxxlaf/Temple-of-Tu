@@ -11,6 +11,9 @@ public class TextSwitcher : MonoBehaviour
 
     private Coroutine switchCoroutine;
 
+    [SerializeField]
+    AudioManager AudioManager;
+
     private void Start()
     {
         textComponent.text = string.Empty;
@@ -40,6 +43,12 @@ public class TextSwitcher : MonoBehaviour
         for (int i = 0; i < letters.Length; i++)
         {
             textComponent.text = letters[i];
+
+            if (AudioManager != null)
+            {
+                AudioManager.PlaySymbolSwitch();
+            }
+
             yield return new WaitForSeconds(switchInterval);
         }
         switchCoroutine = null;
